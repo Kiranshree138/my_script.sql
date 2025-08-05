@@ -1,0 +1,17 @@
+*{
+    color:red;
+}
+h1 {
+border: 1px solid red;
+padding:30px 40px;
+margin: 60px;
+}
+p{
+    color:green;
+}
+#a {
+color:goldenrod;
+}
+b{
+    color:purple;
+}
