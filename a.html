@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./counter.js"></script>
+</head>
+<style>
+body{
+   text-align: center;
+    padding: 50px;
+}
+.cnt{
+    background-color: yellow;
+    padding: 50px;
+  border: 2px solid red;
+  font-size: 32px;
+   font-weight: 700;
+}
+button{
+border:none ;
+   padding:10px 15px ;
+   font-size: 22px;
+border-radius: 10px;
+}
+
+button :nth-child(1){
+    background-color:green ;
+}
+button :nth-child(2){
+    background-color:red ;
+}
+button :nth-child(3){
+    background-color:darkgray ;
+}
+button{
+    hover:blue;
+}
+</style>
+<body>
+    <h1 class="hidden">Counter application</h1>
+    <h1 class="a">Counter</h1>
+    <div class="cnt">
+         <p id="val">0</p>
+        <div>
+            <button>increment</button>
+                <button>decrement</button>
+               <button>reset</button>              
+     </div>
+      </div>
+      
+      </body>
+</html>
