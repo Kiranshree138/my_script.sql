@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+     <script src="./as1.js"></script>
 </head>
 <style>
     
@@ -16,8 +17,14 @@
   padding: 8px; 
   text-align: left; 
 }
+.a{
+    background-color: red;
+}
+tr:hover{
+    background-color:burlywood;
+}
     </style>
-    <body style="background-color: white;">
+    <body >
    <header>
     <h1>Welcome to <span 
             style = "color: red;">My Website</span></h1>
@@ -95,13 +102,13 @@
     let isChanged = false;
 
     function changeColor() {
-        if (isChanged) {
-            document.body.style.backgroundColor = originalColor;
-        } else {
-            document.body.style.backgroundColor = "lightblue";
+        
+        console.log("clicked");
+
+        document.body.classList.toggle("a");
+        console.log("clicked");
+        
         }
-        isChanged = !isChanged;
-    }
 </script>
 <script>
 function addSkill() {
