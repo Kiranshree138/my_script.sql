@@ -21,17 +21,16 @@ const nc=students.map(student=>({
 }));
 console.log("name and course of students",nc);
 
+
 const studentStatus = students.map(student => ({
     name: student.name,
     course: student.course,
     status: student.marks >= 60 ? "Pass" : "Fail"
 }));
-
 console.log(studentStatus);
 
 
 const studentStrings = students.map(student => `${student.name} - ${student.course}`);
-
 console.log(studentStrings);
 
 
@@ -39,35 +38,44 @@ const updatedStudents = students.map(student => ({
   ...student,
   marks: student.marks + 5
 }));
-
 console.log(updatedStudents);
+
 
 const csStudents = students.filter(student => student.course === "Computer Science");
 console.log("Computer Science Students:", csStudents);
 
+
 const highScorers = students.filter(student => student.marks > 80);
 console.log("High Scorers:", highScorers);
+
 
 const studentsWithFeesPaid = students.filter(student => student.feesPaid);
 console.log("Students with Fees Paid:", studentsWithFeesPaid);
 
+
 const matureHighScorers = students.filter(student => student.age > 20 && student.marks > 70);
 console.log("Mature High Scorers:", matureHighScorers);
+
 
 const strugglingMechanical = students.filter(student => student.course === "Mechanical" && student.marks < 85);
 console.log("Struggling Mechanical Students:", strugglingMechanical);
 
+
 const totalMarks = students.reduce((sum, student) => sum + student.marks, 0);
 console.log("Total Marks of All Students:", totalMarks);
+
 
 const averageMarks = totalMarks / students.length;
 console.log("Average Marks of All Students:", averageMarks);
 
+
 const feesPaidCount = students.reduce((count, student) => count + (student.feesPaid ? 1 : 0), 0);
 console.log("Number of Students with Fees Paid:", feesPaidCount);
 
+
 const highestMarks = students.reduce((max, student) => Math.max(max, student.marks), 0);
 console.log("Highest Marks in the Class:", highestMarks);
+
 
 const groupedByCourse = students.reduce((groups, student) => {
   if (!groups[student.course]) {
