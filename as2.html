@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Image Display</title>
+    <style>
+        img {
+            margin: 10px;
+            border: 2px solid black;
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Images with Different IDs</h2>
+<div id="image-container"></div>
+
+<script>
+    const container = document.getElementById('image-container');
+
+    for (let id = 5; id <= 14; id++) {
+        const img = document.createElement('img');
+        img.src = img.src = `https://picsum.photos/seed/${id}/200/200`;
+        img.alt = `Image with ID ${id}`;
+        container.appendChild(img);
+    }
+</script>
+
+</body>
+</html>
