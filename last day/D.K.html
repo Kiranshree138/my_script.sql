@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dakshina Kannada – Your Digital Travel Buddy</title>
+  <style>
+    :root{
+      --bg:#0f172a;           /* slate-900 */
+      --card:#111827;         /* gray-900 */
+      --muted:#94a3b8;        /* slate-400 */
+      --text:#e5e7eb;         /* gray-200 */
+      --brand:#22c55e;        /* green-500 */
+      --brand-2:#06b6d4;      /* cyan-500 */
+      --accent:#f59e0b;       /* amber-500 */
+      --danger:#ef4444;       /* red-500 */
+      --ring: rgba(34,197,94,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:linear-gradient(180deg,#0b1226 0%, #0f172a 100%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;border-radius:12px}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    /* Nav */
+    .nav{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter: blur(10px);
+      background:rgba(15,23,42,.6);border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .nav-inner{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:10px 20px}
+    .logo{font-weight:800;letter-spacing:.5px}
+    .logo span{color:var(--brand)}
+    .nav-links{display:flex;flex-wrap:wrap;gap:10px}
+    .nav-links a{
+      padding:8px 12px;border:1px solid rgba(255,255,255,.08);border-radius:10px;
+      font-size:14px;opacity:.9
+    }
+    .nav-links a.active,.nav-links a:hover{border-color:var(--brand);box-shadow:0 0 0 3px var(--ring)}
+    /* Banner */
+    .banner{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center;margin-top:18px
+    }
+    .tag{display:inline-block;padding:6px 10px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#bbf7d0;border-radius:999px;font-size:12px;margin-bottom:10px}
+    h1{margin:8px 0 12px;font-size:32px;line-height:1.15}
+    p.lead{color:var(--muted);margin:0 0 14px}
+    .grid{display:grid;gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .card{
+      background:linear-gradient(180deg,#0c1225 0%, #0b1329 100%);
+      border:1px solid rgba(255,255,255,.06);border-radius:14px;overflow:hidden
+    }
+    .card-body{padding:12px 14px}
+    .meta{font-size:12px;color:var(--muted)}
+    .flex{display:flex;gap:10px;align-items:center}
+    .btn{
+      display:inline-block;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);color:var(--text);cursor:pointer
+    }
+    .btn.primary{border-color:var(--brand);background:linear-gradient(90deg,rgba(34,197,94,.18),rgba(6,182,212,.18))}
+    .btn.warn{border-color:var(--accent)}
+    .btn.full{width:100%;text-align:center}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 14px}
+    .pill{padding:6px 10px;border:1px solid rgba(255,255,255,.1);border-radius:999px;font-size:12px;cursor:pointer}
+    .pill.active{border-color:var(--brand);box-shadow:0 0 0 3px var(--ring)}
+    /* Sections */
+    section{display:none;padding:10px 0 24px}
+    section.active{display:block}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin:4px 0 8px}
+    .section-title h2{margin:0;font-size:22px}
+    /* Forms */
+    form{display:grid;gap:10px}
+    .field{display:grid;gap:6px}
+    .field label{font-size:13px;color:#cbd5e1}
+    .field input,.field select,.field textarea{
+      padding:10px;border-radius:10px;background:#0b1329;border:1px solid rgba(255,255,255,.08);color:var(--text)
+    }
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .notice{padding:10px;border-radius:12px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);font-size:14px}
+    .error{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.35)}
+    .hidden{display:none}
+    footer{opacity:.7;border-top:1px solid rgba(255,255,255,.06);padding:14px 0;margin-top:16px;font-size:12px}
+    @media (max-width:900px){
+      .banner{grid-template-columns:1fr}
+      .grid.cols-3{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:620px){
+      .nav-inner{flex-direction:column;align-items:flex-start;gap:8px}
+      .grid.cols-3{grid-template-columns:1fr}
+      .two{grid-template-columns:1fr}
+      h1{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner container">
+      <div class="logo">Discover <span>Dakshina Kannada</span></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" data-route="home" class="active">Home</a>
+        <a href="#destinations" data-route="destinations">Destinations</a>
+        <a href="#hotels" data-route="hotels">Hotels & Stays</a>
+        <a href="#events" data-route="events">Events & Festivals</a>
+        <a href="#booking" data-route="booking">Booking / Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- HOME -->
+    <section id="home" class="active">
+      <div class="banner">
+        <div>
+          <span class="tag">Theme</span>
+          <h1>Dakshina Kannada – Nature, Culture, and Adventure</h1>
+          <p class="lead">
+            Your digital travel buddy to explore beaches, temples, Western Ghats treks,
+            and vibrant traditions like Kambala and Yakshagana.
+          </p>
+          <div class="toolbar">
+            <a class="btn primary" href="#destinations">Explore Destinations</a>
+            <a class="btn" href="#events">Upcoming Events</a>
+          </div>
+        </div>
+        <div class="grid">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Beach">
+          <div class="grid cols-3">
+            <img src="https://images.unsplash.com/photo-1562752938-ec6bb2f0f0d1?q=80&w=600&auto=format&fit=crop" alt="Temple">
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=600&auto=format&fit=crop" alt="Ghats">
+            <img src="https://images.unsplash.com/photo-1626213582040-c4c8bade5171?q=80&w=600&auto=format&fit=crop" alt="Festival">
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <div class="section-title"><h2>Top Attractions</h2></div>
+        <div id="home-attractions" class="grid cols-3"></div>
+      </div>
+    </section>
+
+    <!-- DESTINATIONS -->
+    <section id="destinations">
+      <div class="section-title">
+        <h2>Destinations</h2>
+        <div class="toolbar" id="categoryBar">
+          <!-- pills injected -->
+        </div>
+      </div>
+      <div id="dest-grid" class="grid cols-3"></div>
+    </section>
+
+    <!-- HOTELS -->
+    <section id="hotels">
+      <div class="section-title">
+        <h2>Hotels & Stays</h2>
+        <div class="meta">Browse stays by price and rating</div>
+      </div>
+      <div id="hotel-grid" class="grid cols-3"></div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events">
+      <div class="section-title">
+        <h2>Events & Festivals</h2>
+        <div class="meta">Experience Kambala, Yakshagana, and more</div>
+      </div>
+      <div id="event-grid" class="grid cols-3"></div>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="booking">
+      <div class="section-title">
+        <h2>Booking / Registration</h2>
+        <div class="meta" id="bookingContext">Fill the form below.</div>
+      </div>
+
+      <form id="bookingForm" novalidate>
+        <div class="two">
+          <div class="field">
+            <label>Customer Name</label>
+            <input type="text" id="customer_name" placeholder="Your full name" required />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="customer_email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="two">
+          <div class="field">
+            <label>Phone</label>
+            <input type="tel" id="customer_phone" placeholder="9876543210" required />
+          </div>
+          <div class="field">
+            <label>Booking Type</label>
+            <select id="booking_type" required>
+              <option value="">Select…</option>
+              <option value="Hotel">Hotel</option>
+              <option value="Event">Event</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="field">
+            <label id="refLabel">Reference ID (Hotel/Event)</label>
+            <input type="number" id="reference_id" placeholder="e.g., 2" />
+          </div>
+          <div class="field" id="bookingDateWrap">
+            <label>Booking Date</label>
+            <input type="date" id="booking_date" />
+          </div>
+        </div>
+
+        <div id="formError" class="notice error hidden"></div>
+        <button class="btn primary full" type="submit">Submit</button>
+        <div id="formSuccess" class="notice hidden"></div>
+      </form>
+    </section>
+
+    <footer>
+      Built with HTML, CSS & JavaScript – front-end only (APIs simulated with JSON).
+    </footer>
+  </main>
+
+  <script>
+    /* ---------------------------
+       Simulated Backend (JSON APIs)
+       --------------------------- */
+    const api = {
+      getDestinations: () => Promise.resolve([
+        {id:1,name:"Panambur Beach",category:"Beach",description:"Clean shoreline popular for sunsets & water sports.",image_url:"https://images.unsplash.com/photo-1501959181532-7d2a3c064642?q=80&w=1200&auto=format&fit=crop"},
+        {id:2,name:"Kadri Manjunath Temple",category:"Temple",description:"Historic Shiva temple known for bronze idols & architecture.",image_url:"https://images.unsplash.com/photo-1562752938-ec6bb2f0f0d1?q=80&w=1200&auto=format&fit=crop"},
+        {id:3,name:"Kudremukh Trek",category:"Trekking",description:"Lush green peak with rolling meadows in the Western Ghats.",image_url:"https://images.unsplash.com/photo-1501706362039-c06b2d715385?q=80&w=1200&auto=format&fit=crop"},
+        {id:4,name:"Someshwara Beach",category:"Beach",description:"Rocky beach with golden sands and serene views.",image_url:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop"},
+        {id:5,name:"Dharmasthala",category:"Temple",description:"Famous pilgrimage town on the banks of Nethravathi.",image_url:"https://images.unsplash.com/photo-1519680772-8b38f1f201d6?q=80&w=1200&auto=format&fit=crop"},
+        {id:6,name:"Kumara Parvatha",category:"Trekking",description:"Challenging trek rewarding with panoramic vistas.",image_url:"https://images.unsplash.com/photo-1482192505345-5655af888cc4?q=80&w=1200&auto=format&fit=crop"}
+      ]),
+      getHotels: () => Promise.resolve([
+        {id:1,name:"SeaBreeze Resort",location:"Mangaluru",price_per_night:2499.00,rating:4.4,image_url:"https://images.unsplash.com/photo-1501117716987-c8e3f4b1a5f2?q=80&w=1200&auto=format&fit=crop"},
+        {id:2,name:"Temple View Inn",location:"Kadri",price_per_night:1799.00,rating:4.1,image_url:"https://images.unsplash.com/photo-1496412705862-e0088f16f791?q=80&w=1200&auto=format&fit=crop"},
+        {id:3,name:"Ghats Retreat",location:"Kudremukh",price_per_night:2899.00,rating:4.7,image_url:"https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=1200&auto=format&fit=crop"},
+        {id:4,name:"Harbor Hotel",location:"Panambur",price_per_night:1999.00,rating:4.0,image_url:"https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop"},
+        {id:5,name:"Green Meadows",location:"Dharmasthala",price_per_night:1599.00,rating:3.9,image_url:"https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1200&auto=format&fit=crop"},
+        {id:6,name:"Summit Stay",location:"Subrahmanya",price_per_night:2199.00,rating:4.3,image_url:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop"}
+      ]),
+      getEvents: () => Promise.resolve([
+        {id:1,name:"Kambala Buffalo Race",date:"2025-12-15",location:"Moodabidri",description:"Traditional buffalo race on slushy fields during the season.",image_url:"https://images.unsplash.com/photo-1517832207067-4db24a2ae47c?q=80&w=1200&auto=format&fit=crop"},
+        {id:2,name:"Yakshagana Night",date:"2025-10-02",location:"Udupi",description:"Overnight dance-drama with vibrant costumes and music.",image_url:"https://images.unsplash.com/photo-1546707012-c46675f12725?q=80&w=1200&auto=format&fit=crop"},
+        {id:3,name:"Beach Clean-up Drive",date:"2025-09-21",location:"Panambur",description:"Volunteer with locals to keep the coastline pristine.",image_url:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop"},
+        {id:4,name:"Monsoon Trek Fest",date:"2025-08-25",location:"Kudremukh",description:"Guided treks with safety & nature interpretation.",image_url:"https://images.unsplash.com/photo-1501706362039-c06b2d715385?q=80&w=1200&auto=format&fit=crop"}
+      ]),
+      postBooking: (payload) => new Promise((res)=>{ setTimeout(()=>res({ok:true,id: Math.floor(Math.random()*9000)+1000, payload}),400)}),
+      postEventReg: (payload) => new Promise((res)=>{ setTimeout(()=>res({ok:true,id: Math.floor(Math.random()*9000)+1000, payload}),400)})
+    };
+
+    /* ---------------------------
+       Router (hash-based)
+       --------------------------- */
+    const sections = ["home","destinations","hotels","events","booking"];
+    function show(route){
+      sections.forEach(id=>{
+        document.getElementById(id).classList.toggle('active', id===route);
+        document.querySelectorAll([data-route]).forEach(a=>a.classList.toggle('active', a.dataset.route===route));
+      });
+      if(route==="destinations") renderDestinations();
+      if(route==="hotels") renderHotels();
+      if(route==="events") renderEvents();
+      if(route==="home") renderHomeTop();
+    }
+    window.addEventListener('hashchange',()=>show((location.hash||"#home").substring(1)));
+    show((location.hash||"#home").substring(1));
+
+    /* ---------------------------
+       HOME: top attractions (first 3)
+       --------------------------- */
+    async function renderHomeTop(){
+      const wrap = document.getElementById('home-attractions');
+      wrap.innerHTML = "";
+      const data = await api.getDestinations();
+      data.slice(0,3).forEach(d=>{
+        wrap.appendChild(cardDestination(d, true));
+      });
+    }
+
+    /* ---------------------------
+       DESTINATIONS + Filter
+       --------------------------- */
+    let destCache = [];
+    let activeCategory = "All";
+    async function renderDestinations(){
+      if(destCache.length===0) destCache = await api.getDestinations();
+      renderCategoryBar();
+      const grid = document.getElementById('dest-grid');
+      grid.innerHTML = "";
+      const list = activeCategory==="All" ? destCache : destCache.filter(d=>d.category===activeCategory);
+      list.forEach(d=> grid.appendChild(cardDestination(d)));
+    }
+    function renderCategoryBar(){
+      const cats = ["All","Beach","Temple","Trekking"];
+      const bar = document.getElementById('categoryBar');
+      bar.innerHTML = "";
+      cats.forEach(c=>{
+        const el = document.createElement('button');
+        el.className = 'pill' + (c===activeCategory?' active':'');
+        el.textContent = c;
+        el.onclick = ()=>{ activeCategory=c; renderDestinations(); };
+        bar.appendChild(el);
+      });
+    }
+    function cardDestination(d, compact=false){
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${d.image_url}" alt="${d.name}">
+        <div class="card-body">
+          <div class="meta">${d.category}</div>
+          <div class="flex" style="justify-content:space-between">
+            <strong>${d.name}</strong>
+            <a class="btn" href="#booking" data-link>Details</a>
+          </div>
+          <div class="meta" style="margin-top:6px">${d.description}</div>
+        </div>`;
+      // clicking "Details" just takes to booking with preset type as Event? Not needed.
+      return card;
+    }
+
+    /* ---------------------------
+       HOTELS
+       --------------------------- */
+    let hotelCache = [];
+    async function renderHotels(){
+      if(hotelCache.length===0) hotelCache = await api.getHotels();
+      const grid = document.getElementById('hotel-grid');
+      grid.innerHTML = "";
+      hotelCache.forEach(h=>{
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${h.image_url}" alt="${h.name}">
+          <div class="card-body">
+            <div class="meta">${h.location} • ⭐ ${h.rating.toFixed(1)}</div>
+            <strong>${h.name}</strong>
+            <div class="meta" style="margin:6px 0">₹ ${h.price_per_night.toFixed(2)} / night</div>
+            <button class="btn primary full" data-book-hotel="${h.id}">Book Now</button>
+          </div>`;
+        grid.appendChild(card);
+      });
+      grid.querySelectorAll('[data-book-hotel]').forEach(btn=>{
+        btn.addEventListener('click',(e)=>{
+          const id = Number(e.currentTarget.dataset.bookHotel);
+          prepBooking("Hotel", id);
+          location.hash = "#booking";
+        });
+      });
+    }
+
+    /* ---------------------------
+       EVENTS
+       --------------------------- */
+    let eventCache = [];
+    async function renderEvents(){
+      if(eventCache.length===0) eventCache = await api.getEvents();
+      const grid = document.getElementById('event-grid');
+      grid.innerHTML = "";
+      eventCache.forEach(ev=>{
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${ev.image_url}" alt="${ev.name}">
+          <div class="card-body">
+            <div class="meta">${ev.location} • ${formatDate(ev.date)}</div>
+            <strong>${ev.name}</strong>
+            <div class="meta" style="margin:6px 0">${ev.description}</div>
+            <button class="btn warn full" data-reg-event="${ev.id}">Register</button>
+          </div>`;
+        grid.appendChild(card);
+      });
+      grid.querySelectorAll('[data-reg-event]').forEach(btn=>{
+        btn.addEventListener('click',(e)=>{
+          const id = Number(e.currentTarget.dataset.regEvent);
+          prepBooking("Event", id);
+          location.hash = "#booking";
+        });
+      });
+    }
+
+    /* ---------------------------
+       BOOKING FORM
+       --------------------------- */
+    const form = document.getElementById('bookingForm');
+    const ctx = document.getElementById('bookingContext');
+    const typeEl = document.getElementById('booking_type');
+    const refEl = document.getElementById('reference_id');
+    const dateWrap = document.getElementById('bookingDateWrap');
+    const dateEl = document.getElementById('booking_date');
+    const formErr = document.getElementById('formError');
+    const formOk  = document.getElementById('formSuccess');
+    const refLabel = document.getElementById('refLabel');
+
+    // Prefill helper when clicking Book/Register
+    function prepBooking(type, id){
+      typeEl.value = type;
+      refEl.value = id ?? "";
+      refLabel.textContent = type==="Hotel" ? "Reference ID (Hotel)" : "Reference ID (Event)";
+      ctx.textContent = type==="Hotel"
+        ? Booking a Hotel (ID ${id}).
+        : Registering for an Event (ID ${id}).;
+      dateWrap.style.display = (type==="Hotel") ? "grid" : "none";
+    }
+
+    // Change UI based on type
+    typeEl.addEventListener('change', ()=>{
+      const type = typeEl.value;
+      refLabel.textContent = type==="Hotel" ? "Reference ID (Hotel)" : "Reference ID (Event)";
+      dateWrap.style.display = (type==="Hotel") ? "grid" : "none";
+      ctx.textContent = type ? Filling ${type === "Hotel" ? "Hotel Booking" : "Event Registration"} form. : "Fill

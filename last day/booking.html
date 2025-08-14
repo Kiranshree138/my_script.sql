@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking</title>
+    <style>
+        body { font-family: Arial; background-color: #fff0f8; margin: 0; }
+        nav { background: #333; padding: 10px; }
+        nav a { color: white; text-decoration: none; margin: 10px; }
+        h1 { color: darkmagenta; }
+        label { display: block; margin-top: 10px; }
+        input, select { padding: 5px; width: 250px; }
+        button { margin-top: 10px; padding: 8px 12px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="events.html">Events</a>
+        <a href="booking.html">Booking</a>
+    </nav>
+
+    <h1>Booking / Registration</h1>
+    <form onsubmit="alert('Form submitted!'); return false;">
+        <label>Name:</label>
+        <input type="text" required>
+
+        <label>Email:</label>
+        <input type="email" required>
+
+        <label>Phone:</label>
+        <input type="text" required>
+
+        <label>Booking Type:</label>
+        <select>
+            <option>Hotel</option>
+            <option>Event</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

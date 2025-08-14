@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management Assessment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            background-color: #2196F3;
+            color: white;
+            padding: 15px 0;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            margin-top: 20px;
+        }
+        h2 {
+            border-bottom: 2px solid #2196F3;
+            padding-bottom: 5px;
+        }
+        button {
+            background-color:blue;
+            color: white;
+            padding: 8px 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: blue;
+            color: white;
+        }
+        tr:hover {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Management Assessment</h1>
+
+    <div class="container">
+        <h2>Actions</h2>
+        <button onclick="changeBackground()">Change Background Color</button>
+        <button onclick="toggleTable()">Hide/Show Table</button>
+        <button onclick="sortByName()">Sort by Name</button>
+        <button onclick="showAgeAbove20()">Show Age > 20</button>
+        <button onclick="resetTable()">Reset Table</button>
+
+        <h2>Student List</h2>
+        <div id="tableContainer"></div>
+    </div>
+
+    <script>
+        let students = [
+            { name: "Amit Sharma", age: 20, course: "Computer Science" },
+            { name: "Priya Singh", age: 22, course: "Information Technology" },
+            { name: "Ravi Kumar", age: 19, course: "Electronics" },
+            { name: "Neha Verma", age: 21, course: "Mechanical" },
+            { name: "Sohan Lal", age: 23, course: "Civil Engineering" }
+        ];
+
+        let originalStudents = [...students]; // Keep original data
+        let isLightGray = true;
+        let tableVisible = true;
+
+        function renderTable(data) {
+            let container = document.getElementById("tableContainer");
+            container.innerHTML = ""; // Clear old table
+
+            let table = document.createElement("table");
+
+            // Header row
+            let headerRow = document.createElement("tr");
+            let headers = ["Name", "Age", "Course"];
+            headers.forEach(headerText => {
+                let th = document.createElement("th");
+                th.innerHTML = headerText;
+                headerRow.appendChild(th);
+            });
+            table.appendChild(headerRow);
+
+            // Data rows
+            data.forEach(student => {
+                let row = document.createElement("tr");
+
+                let tdName = document.createElement("td");
+                tdName.innerHTML = student.name;
+                row.appendChild(tdName);
+
+                let tdAge = document.createElement("td");
+                tdAge.innerHTML = student.age;
+                row.appendChild(tdAge);
+
+                let tdCourse = document.createElement("td");
+                tdCourse.innerHTML = student.course;
+                row.appendChild(tdCourse);
+
+                table.appendChild(row);
+            });
+
+            container.appendChild(table);
+        }
+
+        function changeBackground() {
+            if (isLightGray) {
+                document.body.style.backgroundColor = "#e0f7fa";
+            } else {
+                document.body.style.backgroundColor = "#f8f9fa";
+            }
+            isLightGray = !isLightGray;
+        }
+
+        function toggleTable() {
+            let container = document.getElementById("tableContainer");
+            container.style.display = tableVisible ? "none" : "block";
+            tableVisible = !tableVisible;
+        }
+
+        function sortByName() {
+            students.sort((a, b) => a.name.localeCompare(b.name));
+            renderTable(students);
+        }
+
+        function showAgeAbove20() {
+            let filtered = students.filter(s => s.age > 20);
+            renderTable(filtered);
+        }
+
+        function resetTable() {
+            students = [...originalStudents];
+            renderTable(students);
+        }
+
+        // Initial render
+        renderTable(students);
+    </script>
+
+</body>
+</html>
